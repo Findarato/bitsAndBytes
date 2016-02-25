@@ -2,16 +2,23 @@
 # -*- coding: utf-8 -*- #
 from __future__ import unicode_literals
 
-AUTHOR = u'Joseph Harry'
-SITENAME = u'Joe Code'
-SITEURL = ''
+AUTHOR = u'IT Department'
+SITENAME = u'Bits and Bytes'
+SITEURL = 'https://bitsandbtyes.academy'
 
 PATH = 'content'
 LOAD_CONTENT_CACHE = False
 
+EXTRA_PATH_METADATA = {
+    'extra/robots.txt': {'path': 'robots.txt'},
+}
+STATIC_PATHS = [
+    'pictures',
+    'extra/robots.txt',
+]
+
 
 TIMEZONE = 'America/Chicago'
-
 DEFAULT_LANG = u'en'
 
 # Feed generation is usually not desired when developing
@@ -48,9 +55,11 @@ LINKS = (
 )
 
 # Social widget
-SOCIAL = (('Github', 'https://github.com/findarato'),
-          ('Google plus', 'https://plus.google.com/102630360601349400454/about'),
-          ('Twitter', 'https://twitter.com/findarato88'))
+SOCIAL = (
+    ('Github', 'https://github.com/findarato'),
+     ('Google plus', 'https://plus.google.com/102630360601349400454/about'),
+     ('Twitter', 'https://twitter.com/findarato88')
+)
 
 DEFAULT_PAGINATION = 5
 
@@ -90,6 +99,10 @@ MENU_INTERNAL_PAGES = (
     ('Categories', CATEGORIES_URL, CATEGORIES_SAVE_AS),
     ('Archives', ARCHIVES_URL, ARCHIVES_SAVE_AS),
 )
+
+# custom page generated with a jinja2 template
+TEMPLATE_PAGES = {'pages/jinja2_template.html': 'jinja2_template.html'}
+
 
 # additional menu items
 #MENUITEMS = (
