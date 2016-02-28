@@ -11,22 +11,24 @@ ADAFRUIT_IO_KEY = ""
 
 # Create an instance of the REST client.
 aio = Client(ADAFRUIT_IO_KEY)
-result = []
 
-# We need to call the speed test
-#display out put line by line
+def checkSpeed():
+    result = []
+    # We need to call the speed test
+    #display out put line by line
+    #filters output
+    proc = subprocess.Popen(["/usr/local/bin/speedtest-cli --simple --secure"],stdout=subprocess.PIPE,shell="/bin/bash")
+    while True:
+      line = proc.stdout.readline()
+      if line != '':
+        #the real code does filtering here
+        value = re.findall('\\b\\d+\\b', line.rstrip())
+        s = "."
+        result.append(s.join(value))
+      else:
+        break
 
-#filters output
-proc = subprocess.Popen(["/usr/local/bin/speedtest-cli --simple --secure"],stdout=subprocess.PIPE,shell="/bin/bash")
-while True:
-  line = proc.stdout.readline()
-  if line != '':
-    #the real code does filtering here
-    value = re.findall('\\b\\d+\\b', line.rstrip())
-    s = "."
-    result.append(s.join(value))
-  else:
-    break
+checkSpeed();
 
 # Displaying the data for debug. This can be removed or commented out
 # None of this is actually needed for logging with Adafruit, it is debug.
@@ -36,7 +38,7 @@ print "Sent Ping:",result[0]
 print "Sent Download:",result[1]
 print "Sent Upload:",result[2]
 # End Debug
-
+if()
 
 #Actually Sending The data
 aio.send('speed-test-ping', result[0])
